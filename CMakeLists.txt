@@ -1,0 +1,19 @@
+CMAKE_MINIMUM_REQUIRED ( VERSION 2.8 )
+
+PROJECT ( DracoTools )
+
+FIND_PACKAGE ( Draco REQUIRED )
+
+# MESSAGE ( "CMAKE_CXX_COMPILER_ID = ${CMAKE_CXX_COMPILER_ID}" )
+
+IF ( DT_BUILD_HOUDINI )
+  IF ( APPLE )
+    IF ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+      ADD_SUBDIRECTORY ( houdini )
+    ELSE ()
+      MESSAGE ( "Building for houdini on OSX requires clang" )
+    ENDIF ()
+  ELSE ()
+    ADD_SUBDIRECTORY ( houdini )
+  ENDIF ( APPLE )
+ENDIF ( DT_BUILD_HOUDINI )
